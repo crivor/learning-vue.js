@@ -11,9 +11,12 @@
     <div class="container">
         <div class="card mt-5">
             <h2 class="card-header">Near-Earth Objects</h2>
-            <div class="m-3" v-cloak v-if="numAsteroids > 0">
+            <div class="m-3" v-cloak v-if="numAsteroids > 0 && showSummary">
                 <p>showing {{numAsteroids}} items</p>
                 <p>{{closestObject}} has the shortest miss distance.</p>
+            </div>
+            <div class="m-3">
+                <a href="#" @click="showSummary = !showSummary">Show/hide summary</a>
             </div>
             <table class="table table-striped">
                 <thead class="thead-light">
@@ -52,7 +55,8 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            asteroids: []
+            asteroids: [],
+            showSummary: true
         },
         computed: {
             numAsteroids: function () {
